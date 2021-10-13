@@ -1,0 +1,16 @@
+*Calculator project
+
+Make a simple calculator.  Have the same functions as the built in calc in standard mode.
+
+Features:
+Keypad
+add
+subtract
+multiply
+divide
+
+Keyboard support
+
+UI will be calculator like.
+
+Inputs will b

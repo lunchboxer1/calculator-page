@@ -1,0 +1,164 @@
+h1 {
+    color: blue;
+}
+
+body {
+    background-color: #5d5d5d;
+    text-align: center;
+}
+
+.controlMargin {
+    margin-left: 48px;
+    
+}
+
+#content {
+    width: 900px;
+    margin: 0 auto;
+    text-align: center;
+
+    border: aqua 2px;
+    border-color: #000000;
+    border-width: 2px;
+
+}
+
+#screen {
+    height: 100px;
+    background-color: #aaaaaa;
+
+    border-color: #000000;
+    border-width: 2px;
+    
+}
+
+#entry {
+    height: 100px;
+    background-color: #aaaaaa;
+}
+
+
+
+#controls {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 10px;
+    background-color: #aaaaaa;
+    padding: 0 10px 10px 10px;
+}
+
+#zeroKey {
+    grid-column: 1;
+    grid-row: 4;
+}
+
+#oneKey {
+    grid-column: 1;
+    grid-row: 3;
+}
+
+#twoKey {
+    grid-column: 2;
+    grid-row: 3;
+}
+
+#threeKey {
+    grid-column: 3;
+    grid-row: 3;
+}
+
+#fourKey {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+#fiveKey {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+#sixKey {
+    grid-column: 3;
+    grid-row: 2;
+}
+
+#sevenKey {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+#eightKey {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+#nineKey {
+    grid-column: 3;
+    grid-row: 1;
+}
+
+#plusKey {
+    grid-column: 4;
+    grid-row: 4;
+}
+
+#minusKey {
+    grid-column: 4;
+    grid-row: 3;
+}
+
+#multKey {
+    grid-column: 4;
+    grid-row: 2;
+}
+
+#divKey {
+    grid-column: 4;
+    grid-row: 1;
+}
+
+#equalKey {
+    grid-column: 5 / 7;
+    grid-row: 4;
+}
+
+#backKey {
+    grid-column: 5;
+    grid-row: 1;
+}
+
+#clearKey {
+    grid-column: 6;
+    grid-row: 1;
+}
+
+#leftParenKey {
+    grid-column: 5;
+    grid-row: 2;
+}
+
+#rightParenKey {
+    grid-column: 6;
+    grid-row: 2;
+}
+
+#sqrtKey {
+    grid-column: 6;
+    grid-row: 3;
+}
+
+#pow2Key {
+    grid-column: 5;
+    grid-row: 3;
+}
+
+#decimalKey {
+    grid-column: 2;
+    grid-row: 4;
+}
+
+#percentKey {
+    grid-column: 3;
+    grid-row: 4;
+}
