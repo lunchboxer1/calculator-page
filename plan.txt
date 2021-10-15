@@ -14,3 +14,9 @@ Keyboard support
 UI will be calculator like.
 
 Inputs will b
+
+
+evaluate
+--operate
+--chain operate
+parenthesis finder

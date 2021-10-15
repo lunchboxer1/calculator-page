@@ -1,7 +1,10 @@
-console.log("Hello World!")
-
 /*Variable*/
 let entry = [];
+
+const specialKeys = ['+', '-', '*', '/', '.']
+let a = null;
+let b = null;
+let oper = null;
 
 /*Selectors*/
 const keys = document.querySelectorAll('button');
@@ -11,95 +14,133 @@ const divEntry = document.querySelector('#entry');
 const testOne = document.querySelector('#testone');
 
 
+/*Scratch Pad*/
+//entry = ['(', '1', '+', '5', ')'];
+//entry1 = ['2', '/', '0'];
+//entry2 = ['2', '+', '14', '-', '95', '/', '8', '*', '2', '+', '5'];
+expression = ['(', '2', '+', '140', '-', '95', '/', '1', '*', '2', '+', '5', ')', '+', '(', '8', '+', '99', ')'];
+
+//console.log(calculateArithmatic(entry2));
+//console.log('-');
+console.log(evaluateExpression(expression));
+
+
 /*Listeners*/
 keys.forEach( (key) => key.addEventListener('click', keyHandler));
 
-testOne.addEventListener('click', () => {
-    entry = ['(', '1', '+', '5', ')'];
-    divEntry.textContent = entry.join('');
-})
 
-/*Function Definitions*/
+/*Handlers*/
 function keyHandler(e) {
-    //console.log(e);
-    //console.log(e.target.dataset.key);
 
     const currentKey = e.target.dataset.key
 
-   if (currentKey === 'b') {
-       entry.pop();
+    //console.log(specialKeys.includes(currentKey));
+    if (currentKey === '=') {
+        entry = divEntry.textContent.split(/([\(+\-*/])/g)
 
-   } else if (currentKey === 'c') {
-       entry = [];
+        //console.log(calculateArithmatic(entry))
+        console.log(entry)
+        divScreen.textContent = calculateArithmatic(entry);
 
-   } else if (currentKey === 'sqrt') {
-       const symbol = 'sqrt(';
-       if (entry[entry.length - 1] !== symbol) entry.push(symbol);
-        
-   } else if (currentKey === 'pow2') {
-       const symbol = "^2";
-       if (entry[entry.length - 1] !== symbol) entry.push(symbol);
 
-   } else if (currentKey === '=') {
-       console.log(entry[entry.length - 1]);
+    } else if (specialKeys.includes(currentKey)) {
 
-   } else if (currentKey === '.'
-                || currentKey === '+'
-                || currentKey === '-'
-                || currentKey === '*'
-                || currentKey === '/') {
-        if (entry[entry.length - 1] !== currentKey) entry.push(currentKey);
-            
-    } else if (currentKey === '=') {
-        evaluate();
+            const lastKey = divEntry.textContent[divEntry.textContent.length - 1];
+
+            if (lastKey === undefined) { //won't allow the first element in the entry to be a special charecter
+                null;
+                    
+            } else if (!specialKeys.includes(lastKey)) {
+                divEntry.textContent += currentKey;
+            }
+
+    } else if (currentKey === 'c') {
+        divEntry.textContent = '';
 
     } else {
-        entry.push(currentKey);
-   }
+        divEntry.textContent += currentKey;
+    }
+}   
 
-    divEntry.textContent = entry.join('');
+/*Function Definitions*/
+function evaluateExpression(expression) {
+    let evaluating = true;
 
-}
+    //Error check.  Verify there are the same number of ( and )
 
-function evaluate() {
-    //Do the parenthesis
+    while (evaluating) {
+        const leftParen = expression.findIndex((element) => element === '(');
+        const rightParen = expression.findIndex((element) => element === ')');
 
-    //Error check for the 
+        if(leftParen === undefined || leftParen === -1 ) {
+            evaluating = false;
+        } else {
+            const ans = calculateArithmatic(expression.slice(leftParen + 1, rightParen))
 
-    //Search for the first '('
-    entry.forEach( element => {
-        if (element === '(') {
-            console.log(indexOf(element))
+            expression[leftParen] = ans;
+            expression.splice(leftParen + 1, (rightParen - leftParen));
         }
-    })
+        
+    }
+
+    expression = calculateArithmatic(expression);
+
+    return expression;
 }
 
 
 
-/*TDD Exports*/
-module.exports = helloWorld;
+function calcSingleOperation(operator, num1, num2) {
+    num1 = Number(num1);
+    num2 = Number(num2);
 
+    switch(operator) {
+        case '+':
+            return num1 + num2;
+            break;
+        case '-':
+            return num1 - num2;
+            break;
+        case '*':
+            return num1 * num2;
+            break;
+        case '/':
+            if (num2 === 0) return 'undefined'
+            return num1 / num2;
+            break;
+        default:
+            return 'error';
+    }
+}
 
+function calculateArithmatic(equation) {
+    //Order of operation
+    calcMultipleOperations('*', equation);
+    calcMultipleOperations('/', equation);
+    calcMultipleOperations('+', equation);
+    calcMultipleOperations('-', equation);
 
+    return (equation);
 
+}
 
-//Attach the listener to the array of buttons
-//keysArray
+function calcMultipleOperations (oper, equation) {
+    let working = true;
 
+    while (working) {
 
+        const target = equation.findIndex( (element) => element === oper);
 
-//Handler
-//Add the content of the key to the entry string
-//Add some special hanndlers for the special keys)
+        if (target === undefined || target === -1) {
+            
+            working = false;
+        } else {
+            const ans = calcSingleOperation(oper, equation[target - 1], equation[ target + 1]);
+            equation[target - 1] = ans;
+            equation.splice(target, 2);
+        }
+    }
 
+    return equation;
+}
 
-//Make an enter function that tries to evaluate the function?
-
-//Temp holder
-/* Scratch pad
-//Convert from nodelist to array so we have acess to all methods
-const keysArray = Array.from(keys);
-console.log(keysArray);
-
-console.log(keysArray[0].dataset.key)
-*/

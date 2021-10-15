@@ -3,7 +3,7 @@ h1 {
 }
 
 body {
-    background-color: #5d5d5d;
+    background-color: #155263;
     text-align: center;
 }
 
@@ -13,43 +13,50 @@ body {
 }
 
 #content {
-    width: 900px;
+    width: 650px;
     margin: 0 auto;
     text-align: center;
 
-    border: aqua 2px;
-    border-color: #000000;
-    border-width: 2px;
+    border: 2px solid black;
+    border-radius: 5px;
 
 }
 
 #screen {
     height: 100px;
-    background-color: #aaaaaa;
+    background-color: #ffc93c;
 
     border-color: #000000;
     border-width: 2px;
+
+    display: flex;
+    align-items: center;
+    justify-content: end;
     
 }
 
 #entry {
     height: 100px;
-    background-color: #aaaaaa;
+    background-color: #ff6f3c;
+    display: flex;
+    align-items: center;
+    justify-content: end;
 }
 
 
 
 #controls {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 1fr 1fr 1fr 2fr;
     gap: 10px;
-    background-color: #aaaaaa;
-    padding: 0 10px 10px 10px;
+    background-color: #ffc93c;
+    padding: 10px 10px 10px 10px;
+    height: 250px;
 }
 
 #zeroKey {
-    grid-column: 1;
+    grid-column: 2/4;
     grid-row: 4;
 }
 
@@ -119,7 +126,7 @@ body {
 }
 
 #equalKey {
-    grid-column: 5 / 7;
+    grid-column: 5 / 6;
     grid-row: 4;
 }
 
@@ -129,7 +136,7 @@ body {
 }
 
 #clearKey {
-    grid-column: 6;
+    grid-column: 5;
     grid-row: 1;
 }
 
@@ -139,8 +146,8 @@ body {
 }
 
 #rightParenKey {
-    grid-column: 6;
-    grid-row: 2;
+    grid-column: 5;
+    grid-row: 3;
 }
 
 #sqrtKey {
@@ -154,7 +161,7 @@ body {
 }
 
 #decimalKey {
-    grid-column: 2;
+    grid-column: 1;
     grid-row: 4;
 }
 
